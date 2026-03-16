@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선생님과 함께하는 시간 — M카페</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ededf7;
+      --bg2: #f5f4fc;
+      --purple: #6a4fd8;
+      --purple-light: #9b82ef;
+      --purple-dark: #3d2d8f;
+      --pink: #f06292;
+      --card-bg: #ffffff;
+      --text: #1c1642;
+      --text-sub: #5e5a7a;
+      --radius: 20px;
+      --shadow: 0 8px 32px rgba(90, 60, 200, 0.10);
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── TOP LOGO BAR ── */
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 16px 36px;
+      background: var(--bg);
+    }
+    .top-logo {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    /* ── HERO HEAD IMAGE ── */
+    .hero {
+      width: 100%;
+      background: #e8e5f5;
+    }
+    .hero img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 56px 24px;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--purple-dark);
+      margin-bottom: 36px;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 4px;
+      background: var(--purple);
+      border-radius: 2px;
+      margin: 10px auto 0;
+    }
+
+    /* ── MULTI-LINE TITLE ── */
+    .title-main {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--purple-dark);
+      letter-spacing: -0.5px;
+    }
+    .title-sub {
+      font-size: 3.9rem;
+      font-weight: 900;
+      color: var(--purple);
+      letter-spacing: -0.5px;
+      margin-top: 4px;
+    }
+    .title-desc {
+      font-size: 1.725rem;
+      font-weight: 400;
+      color: var(--text-sub);
+      line-height: 1.8;
+      margin-top: 14px;
+    }
+    .section-title::after {
+      margin-top: 16px;
+    }
+
+    /* ── MTEACHER BANNER ROW ── */
+    .mteacher-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+    .mteacher-card {
+      flex: 1;
+      max-width: 320px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+    .mteacher-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 48px rgba(90, 60, 200, 0.22);
+    }
+    .mteacher-card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── SERVICES DIVIDER ── */
+    .divider {
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--purple-light), transparent);
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    /* ── SERVICE GRID ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--purple-light), var(--pink)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 48px rgba(90, 60, 200, 0.18);
+    }
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-info {
+      padding: 18px 20px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .service-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      align-self: flex-start;
+      letter-spacing: 0.3px;
+    }
+    .service-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .service-arrow {
+      margin-top: auto;
+      padding-top: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--purple);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .service-arrow svg {
+      transition: transform 0.2s;
+    }
+    .service-card:hover .service-arrow svg {
+      transform: translateX(4px);
+    }
+
+    /* ── QR SECTION ── */
+    .qr-row {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+    .qr-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+      max-width: 400px;
+    }
+    .qr-title {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--purple-dark);
+      text-align: center;
+    }
+    .qr-img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    .qr-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    /* ── QR POPUP MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 20, 80, 0.65);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-box {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px 36px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 24px 64px rgba(60, 30, 180, 0.25);
+      position: relative;
+      max-width: 420px;
+      width: 90%;
+      animation: popIn 0.25s ease;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.88); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .modal-title {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--purple-dark);
+      text-align: center;
+    }
+    .modal-qr {
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--text-sub);
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--purple); }
+    .qr-img { cursor: pointer; transition: transform 0.2s; }
+    .qr-img:hover { transform: scale(1.05); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--purple-dark);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 28px 16px;
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+    footer strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .mteacher-card:nth-child(1) { animation-delay: 0.1s; }
+    .mteacher-card:nth-child(2) { animation-delay: 0.22s; }
+    .mteacher-card:nth-child(3) { animation-delay: 0.34s; }
+    .service-card:nth-child(1) { animation-delay: 0.05s; }
+    .service-card:nth-child(2) { animation-delay: 0.13s; }
+    .service-card:nth-child(3) { animation-delay: 0.21s; }
+    .service-card:nth-child(4) { animation-delay: 0.29s; }
+    .service-card:nth-child(5) { animation-delay: 0.37s; }
+    .service-card:nth-child(6) { animation-delay: 0.45s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .mteacher-row { flex-direction: column; align-items: center; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MTEACHER SECTION -->
+  <div class="section">
+    <div class="section-title">
+      <p class="title-main">선생님과 함께하는 시간!</p>
+      <p class="title-sub">'M카페'로 만나요!</p>
+      <p class="title-desc">선생님이 계신 곳으로 찾아가<br />미래엔 서비스와 활용 노하우를 안내해 드립니다.</p>
+    </div>
+    <div class="mteacher-row">
+
+      <a href="https://e.m-teacher.co.kr/" target="_blank" class="mteacher-card fade-up">
+        <img src="mteacher_elem.png" alt="엠티처 초등" />
+      </a>
+
+      <a href="https://m.m-teacher.co.kr/" target="_blank" class="mteacher-card fade-up">
+        <img src="mteacher_mid.png" alt="엠티처 중학" />
+      </a>
+
+      <a href="https://h.m-teacher.co.kr/" target="_blank" class="mteacher-card fade-up">
+        <img src="mteacher_high.png" alt="엠티처 고등" />
+      </a>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SERVICES SECTION -->
+  <div class="section">
+    <p class="section-title">미래엔 서비스 소개</p>
+    <div class="services-grid">
+
+      <!-- AI Class -->
+      <a href="https://mh-aiclass.m-teacher.co.kr/" target="_blank" class="service-card fade-up">
+        <img src="ai_class.png" alt="AI Class" class="service-thumb" />
+        <div class="service-info">
+          <span class="service-tag">AI 코스웨어</span>
+          <p class="service-title">AI Class</p>
+          <p class="service-desc">맞춤형 학습 관리를 지원하는 미래엔 AI 코스웨어</p>
+          <span class="service-arrow">바로가기
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 디지털 지도 -->
+      <a href="https://map.m-teacher.co.kr/" target="_blank" class="service-card fade-up">
+        <img src="digital_map.png" alt="디지털 지도" class="service-thumb" />
+        <div class="service-info">
+          <span class="service-tag">지도 활용 수업</span>
+          <p class="service-title">디지털 지도</p>
+          <p class="service-desc">지도 위에 펼쳐지는 교과서</p>
+          <span class="service-arrow">바로가기
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 카드톡 -->
+      <a href="https://cardtalk.m-teacher.co.kr/" target="_blank" class="service-card fade-up">
+        <img src="cardtok.png" alt="카드톡" class="service-thumb" />
+        <div class="service-info">
+          <span class="service-tag">게임 수업</span>
+          <p class="service-title">카드톡</p>
+          <p class="service-desc">뒤집고, 맞추고, 바꾸고! 디지털 카드 게임</p>
+          <span class="service-arrow">바로가기
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- MakeX -->
+      <a href="https://make-x.m-teacher.co.kr/" target="_blank" class="service-card fade-up">
+        <img src="makex.png" alt="MakeX" class="service-thumb" />
+        <div class="service-info">
+          <span class="service-tag">저작 도구</span>
+          <p class="service-title">MakeX</p>
+          <p class="service-desc">카드뉴스부터 문항까지! 원하는 대로, 교사용 저작도구</p>
+          <span class="service-arrow">바로가기
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 초코클래스 학생용 -->
+      <a href="https://stgchococlass.mirae-n.com/trial/gate" target="_blank" class="service-card fade-up">
+        <img src="choco_student.png" alt="초코클래스 학생용" class="service-thumb" />
+        <div class="service-info">
+          <span class="service-tag">초등 학습</span>
+          <p class="service-title">초코클래스_학생용</p>
+          <p class="service-desc">초등 전과목 학습부터 수준별 맞춤 국어, 수학, 영어 학습</p>
+          <span class="service-arrow">바로가기
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 초코클래스 교사용 -->
+      <a href="https://www.miraenchoco.com/brand/board/choco-class" target="_blank" class="service-card fade-up">
+        <img src="choco_teacher.png" alt="초코클래스 교사용" class="service-thumb" />
+        <div class="service-info">
+          <span class="service-tag">교사용 LMS</span>
+          <p class="service-title">초코클래스_교사용</p>
+          <p class="service-desc">초코클래스를 학급 단위로 관리하는 교사용 LMS</p>
+          <span class="service-arrow">바로가기
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- QR SECTION -->
+  <div class="section">
+    <p class="section-title">함께해요!</p>
+    <div class="qr-row">
+
+      <div class="qr-card">
+        <p class="qr-title">M카페 오픈채팅방</p>
+        <img src="qr_mcafe.jpg" alt="M카페 오픈채팅방 QR" class="qr-img" onclick="openModal('qr_mcafe.jpg', 'M카페 오픈채팅방')" />
+        <p class="qr-desc">
+          M카페 참여 선생님들을 위한 소통 채널<br />
+          엠티처에 대한 의견을 주세요!<br />
+          선생님들을 위한 소소한 이벤트가 함께 합니다! :)
+        </p>
+      </div>
+
+      <div class="qr-card">
+        <p class="qr-title">초코클래스 무료 체험</p>
+        <img src="qr_choco.png" alt="초코클래스 무료 체험 QR" class="qr-img" onclick="openModal('qr_choco.png', '초코클래스 무료 체험')" />
+        <p class="qr-desc">
+          초코클래스 1개월 무료 이용권 증정<br />
+          우리 반 학생들과 교과, 독해, 수학 등<br />
+          즐겁게 수업을 만들어 보세요! :)
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- QR POPUP MODAL -->
+  <div class="modal-overlay" id="qrModal" onclick="closeModal(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+      <p class="modal-title" id="modalTitle"></p>
+      <img id="modalImg" class="modal-qr" src="" alt="QR 코드" />
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>MiraeN</strong> &nbsp;|&nbsp; 미래엔 M카페<br />
+    mcafe@mirae-n.com
+  </footer>
+
+  <script>
+    function openModal(src, title) {
+      document.getElementById("modalImg").src = src;
+      document.getElementById("modalTitle").textContent = title;
+      document.getElementById("qrModal").classList.add("active");
+    }
+    function closeModal(e) {
+      if (e.target === document.getElementById("qrModal")) {
+        document.getElementById("qrModal").classList.remove("active");
+      }
+    }
+    function closeModalDirect() {
+      document.getElementById("qrModal").classList.remove("active");
+    }
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") document.getElementById("qrModal").classList.remove("active");
+    });
+  </script>
+
+</body>
+</html>
