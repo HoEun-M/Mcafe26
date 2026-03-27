@@ -107,6 +107,10 @@
       margin-top: 16px;
     }
 
+    .mteacher-label {
+      margin-top: 36px;
+    }
+
     /* ── MTEACHER BANNER ROW ── */
     .mteacher-row {
       display: flex;
@@ -441,6 +445,14 @@
     .qr-img { cursor: pointer; transition: transform 0.2s; }
     .qr-img:hover { transform: scale(1.05); }
 
+    .qr-section-desc {
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--text-sub);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--purple-dark);
@@ -493,6 +505,7 @@
       <p class="title-sub">'M카페'로 만나요!</p>
       <p class="title-desc">선생님이 계신 곳으로 찾아가<br />미래엔 서비스와 활용 노하우를 안내해 드립니다.</p>
     </div>
+    <p class="section-title mteacher-label">미래엔 엠티처</p>
     <div class="mteacher-row">
 
       <a href="https://e.m-teacher.co.kr/" target="_blank" class="mteacher-card fade-up">
@@ -514,68 +527,8 @@
 
   <!-- SERVICES SECTION -->
   <div class="section">
-    <p class="section-title">미래엔 서비스 소개</p>
+    <p class="section-title">초코클래스 소개</p>
     <div class="services-grid">
-
-      <!-- AI Class -->
-      <a href="https://mh-aiclass.m-teacher.co.kr/" target="_blank" class="service-card fade-up">
-        <img src="ai_class.png" alt="AI Class" class="service-thumb" />
-        <div class="service-info">
-          <span class="service-tag">AI 코스웨어</span>
-          <p class="service-title">AI Class</p>
-          <p class="service-desc">맞춤형 학습 관리를 지원하는 미래엔 AI 코스웨어</p>
-          <span class="service-arrow">바로가기
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 디지털 지도 -->
-      <a href="https://map.m-teacher.co.kr/" target="_blank" class="service-card fade-up">
-        <img src="digital_map.png" alt="디지털 지도" class="service-thumb" />
-        <div class="service-info">
-          <span class="service-tag">지도 활용 수업</span>
-          <p class="service-title">디지털 지도</p>
-          <p class="service-desc">지도 위에 펼쳐지는 교과서</p>
-          <span class="service-arrow">바로가기
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- 카드톡 -->
-      <a href="https://cardtalk.m-teacher.co.kr/" target="_blank" class="service-card fade-up">
-        <img src="cardtok.png" alt="카드톡" class="service-thumb" />
-        <div class="service-info">
-          <span class="service-tag">게임 수업</span>
-          <p class="service-title">카드톡</p>
-          <p class="service-desc">뒤집고, 맞추고, 바꾸고! 디지털 카드 게임</p>
-          <span class="service-arrow">바로가기
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- MakeX -->
-      <a href="https://make-x.m-teacher.co.kr/" target="_blank" class="service-card fade-up">
-        <img src="makex.png" alt="MakeX" class="service-thumb" />
-        <div class="service-info">
-          <span class="service-tag">저작 도구</span>
-          <p class="service-title">MakeX</p>
-          <p class="service-desc">카드뉴스부터 문항까지! 원하는 대로, 교사용 저작도구</p>
-          <span class="service-arrow">바로가기
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
 
       <!-- 초코클래스 학생용 -->
       <a href="https://stgchococlass.mirae-n.com/trial/gate" target="_blank" class="service-card fade-up">
@@ -607,6 +560,17 @@
         </div>
       </a>
 
+
+      <!-- 초코클래스 무료 체험 QR -->
+      <div class="service-card fade-up qr-service-card" onclick="openModal('qr_choco.png','초코클래스 무료 체험')" style="cursor:pointer;">
+        <div class="service-info" style="align-items:center; text-align:center; padding:28px 20px;">
+          <span class="service-tag">무료 체험</span>
+          <p class="service-title" style="margin-top:8px;">초코클래스 무료 체험</p>
+          <img src="qr_choco.png" alt="초코클래스 무료 체험 QR" style="width:160px;height:160px;object-fit:contain;margin:16px 0;border-radius:8px;" />
+          <p class="service-desc">초코클래스 1개월 무료 이용권 증정<br/>우리 반 학생들과 교과, 독해, 수학 등<br/>즐겁게 수업을 만들어 보세요! :)</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -615,26 +579,22 @@
   <!-- QR SECTION -->
   <div class="section">
     <p class="section-title">함께해요!</p>
+    <p class="qr-section-desc">M카페 참여 선생님들을 위한 소통 채널입니다.<br />엠티처에 대한 의견부터 오류 신고 등 편하게 채팅 주세요!<br />추가로 선생님들을 위한 소소한 이벤트가 함께 합니다! :)</p>
     <div class="qr-row">
 
       <div class="qr-card">
-        <p class="qr-title">M카페 오픈채팅방</p>
-        <img src="qr_mcafe.jpg" alt="M카페 오픈채팅방 QR" class="qr-img" onclick="openModal('qr_mcafe.jpg', 'M카페 오픈채팅방')" />
-        <p class="qr-desc">
-          M카페 참여 선생님들을 위한 소통 채널<br />
-          엠티처에 대한 의견을 주세요!<br />
-          선생님들을 위한 소소한 이벤트가 함께 합니다! :)
-        </p>
+        <p class="qr-title">M카페 오픈채팅_초등</p>
+        <img src="qr_mcafe.jpg" alt="M카페 오픈채팅_초등 QR" class="qr-img" onclick="openModal('qr_mcafe.jpg', 'M카페 오픈채팅_초등')" />
       </div>
 
       <div class="qr-card">
-        <p class="qr-title">초코클래스 무료 체험</p>
-        <img src="qr_choco.png" alt="초코클래스 무료 체험 QR" class="qr-img" onclick="openModal('qr_choco.png', '초코클래스 무료 체험')" />
-        <p class="qr-desc">
-          초코클래스 1개월 무료 이용권 증정<br />
-          우리 반 학생들과 교과, 독해, 수학 등<br />
-          즐겁게 수업을 만들어 보세요! :)
-        </p>
+        <p class="qr-title">M카페 오픈채팅_중학</p>
+        <img src="qr_mid.jpg" alt="M카페 오픈채팅_중학 QR" class="qr-img" onclick="openModal('qr_mid.jpg', 'M카페 오픈채팅_중학')" />
+      </div>
+
+      <div class="qr-card">
+        <p class="qr-title">M카페 오픈채팅_고등</p>
+        <img src="qr_high.jpg" alt="M카페 오픈채팅_고등 QR" class="qr-img" onclick="openModal('qr_high.jpg', 'M카페 오픈채팅_고등')" />
       </div>
 
     </div>
